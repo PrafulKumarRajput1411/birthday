@@ -312,31 +312,31 @@
     }
 
     #open:checked~.message .letter> :nth-child(1) {
-      animation-delay: 6.5s
+      animation-delay: 14.7s
     }
 
     #open:checked~.message .letter> :nth-child(2) {
-      animation-delay: 7s
+      animation-delay: 15.2s
     }
 
     #open:checked~.message .letter> :nth-child(3) {
-      animation-delay: 7.8s
+      animation-delay: 16.0s
     }
 
     #open:checked~.message .letter> :nth-child(4) {
-      animation-delay: 8.8s
+      animation-delay: 17.0s
     }
 
     #open:checked~.message .letter> :nth-child(5) {
-      animation-delay: 9.8s
+      animation-delay: 18.0s
     }
 
     #open:checked~.message .letter> :nth-child(6) {
-      animation-delay: 10.8s
+      animation-delay: 19.0s
     }
 
     #open:checked~.message .letter> :nth-child(7) {
-      animation-delay: 11.6s
+      animation-delay: 19.8s
     }
 
     @keyframes show {
@@ -395,7 +395,7 @@
     }
 
     #open:checked~.message .gallery {
-      animation: show 1s ease 13.4s forwards
+      animation: show 1s ease 21.6s forwards
     }
 
     .gallery h3 {
@@ -1257,15 +1257,15 @@
         animation-timing-function: ease-out
       }
 
-      12% {
+      18% {
         opacity: 1;
-        transform: translate(calc(var(--dx)*.3vw), calc(var(--u)*var(--up)*-1)) scale(1);
+        transform: translate(calc((var(--tx)*1vw - var(--u)*20)*.92), calc(var(--u)*var(--up)*-1)) scale(1);
         animation-timing-function: ease-in
       }
 
       100% {
         opacity: 1;
-        transform: translate(calc(var(--dx)*1vw), 105vh) rotate(calc(var(--r)*1deg)) scale(1)
+        transform: translate(calc(var(--tx)*1vw - var(--u)*20), 105vh) rotate(calc(var(--r)*1deg)) scale(1)
       }
     }
 
@@ -1310,10 +1310,6 @@
         opacity: 0;
         transform: translateX(calc(var(--u)*38.73))
       }
-    }
-
-    #open:checked~.message {
-      transition-delay: 6s
     }
 
     @media (prefers-reduced-motion:reduce) {
@@ -1442,7 +1438,221 @@
     }
 
     #open:checked~.message .letter> :nth-child(8) {
-      animation-delay: 12.4s
+      animation-delay: 20.6s
+    }
+
+    /* heart tree screen */
+    .tree {
+      opacity: 0;
+      visibility: hidden;
+      z-index: 2;
+      pointer-events: none;
+      padding: 0 3vw;
+      background: radial-gradient(circle at 75% 40%, rgba(255, 110, 150, .28), transparent 62%)
+    }
+
+    #open:checked~.tree {
+      animation: tlife 9s ease 6s forwards
+    }
+
+    @keyframes tlife {
+      0% {
+        opacity: 0;
+        visibility: visible
+      }
+
+      8% {
+        opacity: 1;
+        visibility: visible
+      }
+
+      89% {
+        opacity: 1;
+        visibility: visible
+      }
+
+      100% {
+        opacity: 0;
+        visibility: hidden
+      }
+    }
+
+    .treebox {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 3vw;
+      width: min(96vw, 900px)
+    }
+
+    .q {
+      flex: 1;
+      text-align: left
+    }
+
+    .q p {
+      margin: .35em 0;
+      font-size: clamp(18px, 4.6vw, 34px);
+      line-height: 1.45;
+      color: var(--ink);
+      opacity: 0
+    }
+
+    .qm {
+      font-family: var(--script);
+      font-size: clamp(54px, 14vw, 96px);
+      line-height: .6;
+      color: var(--gold);
+      height: .5em;
+      opacity: 0
+    }
+
+    .q .qs {
+      font-family: var(--script);
+      font-size: clamp(30px, 8vw, 54px);
+      color: var(--gold);
+      margin-top: .6em
+    }
+
+    #open:checked~.tree .qm {
+      animation: show .9s ease 6.7s forwards
+    }
+
+    #open:checked~.tree .l1 {
+      animation: show .9s ease 7.2s forwards
+    }
+
+    #open:checked~.tree .l2 {
+      animation: show .9s ease 8.6s forwards
+    }
+
+    #open:checked~.tree .l3 {
+      animation: show .9s ease 10s forwards
+    }
+
+    #open:checked~.tree .l4 {
+      animation: show .9s ease 11.4s forwards
+    }
+
+    #open:checked~.tree .qs {
+      animation: show .9s ease 12.8s forwards
+    }
+
+    .treewrap {
+      --w: min(54vw, 320px, 44vh);
+      width: var(--w);
+      aspect-ratio: 100/150;
+      position: relative;
+      flex: none;
+      filter: drop-shadow(0 10px 18px rgba(0, 0, 0, .3))
+    }
+
+    .treesvg {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      overflow: visible;
+      clip-path: inset(100% -10% 0 -10%)
+    }
+
+    #open:checked~.tree .treesvg {
+      animation: growup 1.8s ease-out 6.8s forwards
+    }
+
+    @keyframes growup {
+      to {
+        clip-path: inset(-10% -10% 0 -10%)
+      }
+    }
+
+    .canopy {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 62%
+    }
+
+    .canopy i {
+      position: absolute;
+      margin: -.5em 0 0 -.5em;
+      font-style: normal;
+      line-height: 1;
+      font-size: calc(var(--w)*var(--s)/100);
+      color: hsl(var(--h) 88% var(--l, 58%));
+      text-shadow: 0 0 8px rgba(255, 70, 110, .55);
+      opacity: 0
+    }
+
+    #open:checked~.tree .canopy i {
+      animation: grow .7s ease-out var(--d) both, beat2 var(--b) ease-in-out calc(var(--d) + .7s) infinite
+    }
+
+    @keyframes grow {
+      0% {
+        opacity: 0;
+        transform: scale(0) rotate(-30deg)
+      }
+
+      70% {
+        transform: scale(1.3) rotate(8deg)
+      }
+
+      100% {
+        opacity: 1;
+        transform: scale(1) rotate(0)
+      }
+    }
+
+    @keyframes beat2 {
+
+      0%,
+      100% {
+        opacity: 1;
+        transform: scale(1)
+      }
+
+      50% {
+        opacity: 1;
+        transform: scale(1.2)
+      }
+    }
+
+    .drops i.dp {
+      top: 55%;
+      --l: 62%;
+      opacity: 0
+    }
+
+    #open:checked~.tree .drops i.dp {
+      animation: dropdown 4s linear var(--d) infinite
+    }
+
+    @keyframes dropdown {
+      0% {
+        opacity: 0;
+        transform: translateY(0) rotate(0)
+      }
+
+      12% {
+        opacity: 1
+      }
+
+      100% {
+        opacity: 0;
+        transform: translateY(calc(var(--w)*1.1)) translateX(calc(var(--w)*.12)) rotate(80deg)
+      }
+    }
+
+    #open:checked~.message {
+      transition-delay: 14.2s
+    }
+
+    @media (prefers-reduced-motion:reduce) {
+      .tree {
+        display: none
+      }
     }
   </style>
 </head>
@@ -1662,142 +1872,340 @@
           </svg></div>
       </div>
       <div class="flash"></div>
-      <div class="rain"><i style="--dx:-17;--s:2.5;--d:0.78s;--t:2.04s;--r:8;--h:348;--up:6">&#9829;&#xFE0E;</i><i
-          style="--dx:8;--s:5.2;--d:0.26s;--t:2.05s;--r:-7;--h:347;--up:5">&#9829;&#xFE0E;</i><i
-          style="--dx:-39;--s:3.5;--d:0.99s;--t:2.07s;--r:-32;--h:346;--up:8">&#9829;&#xFE0E;</i><i
-          style="--dx:8;--s:2.2;--d:0.27s;--t:2.33s;--r:-43;--h:354;--up:7">&#9829;&#xFE0E;</i><i
-          style="--dx:-34;--s:2.4;--d:0.37s;--t:2.49s;--r:-37;--h:348;--up:8">&#9829;&#xFE0E;</i><i
-          style="--dx:7;--s:2.7;--d:0.12s;--t:2.43s;--r:12;--h:346;--up:8">&#9829;&#xFE0E;</i><i
-          style="--dx:-28;--s:4.4;--d:0.51s;--t:2.19s;--r:14;--h:359;--up:6">&#9829;&#xFE0E;</i><i
-          style="--dx:-19;--s:4.8;--d:0.84s;--t:2.15s;--r:13;--h:354;--up:8">&#9829;&#xFE0E;</i><i
-          style="--dx:-0;--s:3.2;--d:0.54s;--t:2.37s;--r:-51;--h:348;--up:8">&#9829;&#xFE0E;</i><i
-          style="--dx:-8;--s:4.6;--d:0.18s;--t:2.29s;--r:-55;--h:347;--up:10">&#9829;&#xFE0E;</i><i
-          style="--dx:6;--s:4.8;--d:0.98s;--t:2.20s;--r:-16;--h:360;--up:8">&#9829;&#xFE0E;</i><i
-          style="--dx:29;--s:2.2;--d:0.11s;--t:2.16s;--r:29;--h:347;--up:4">&#9829;&#xFE0E;</i><i
-          style="--dx:22;--s:3.1;--d:0.69s;--t:2.41s;--r:-3;--h:354;--up:9">&#9829;&#xFE0E;</i><i
-          style="--dx:-11;--s:4.3;--d:0.03s;--t:2.28s;--r:-39;--h:348;--up:7">&#9829;&#xFE0E;</i><i
-          style="--dx:-42;--s:4.7;--d:0.16s;--t:2.15s;--r:-10;--h:360;--up:4">&#9829;&#xFE0E;</i><i
-          style="--dx:-32;--s:3.4;--d:0.33s;--t:2.08s;--r:-5;--h:353;--up:9">&#9829;&#xFE0E;</i><i
-          style="--dx:-8;--s:3.3;--d:1.06s;--t:2.57s;--r:-41;--h:347;--up:5">&#9829;&#xFE0E;</i><i
-          style="--dx:-33;--s:4.3;--d:0.01s;--t:2.50s;--r:-37;--h:353;--up:6">&#9829;&#xFE0E;</i><i
-          style="--dx:-48;--s:3.5;--d:0.44s;--t:2.34s;--r:-44;--h:346;--up:7">&#9829;&#xFE0E;</i><i
-          style="--dx:38;--s:4.7;--d:1.05s;--t:2.48s;--r:-10;--h:357;--up:7">&#9829;&#xFE0E;</i><i
-          style="--dx:-10;--s:3.7;--d:0.48s;--t:2.11s;--r:-34;--h:359;--up:5">&#9829;&#xFE0E;</i><i
-          style="--dx:-37;--s:4.1;--d:0.12s;--t:2.34s;--r:8;--h:348;--up:6">&#9829;&#xFE0E;</i><i
-          style="--dx:11;--s:2.2;--d:0.25s;--t:2.23s;--r:21;--h:353;--up:6">&#9829;&#xFE0E;</i><i
-          style="--dx:10;--s:3.7;--d:0.14s;--t:2.29s;--r:-1;--h:360;--up:7">&#9829;&#xFE0E;</i><i
-          style="--dx:-18;--s:2.5;--d:0.90s;--t:2.44s;--r:1;--h:350;--up:8">&#9829;&#xFE0E;</i><i
-          style="--dx:-46;--s:5.3;--d:0.63s;--t:2.09s;--r:9;--h:345;--up:10">&#9829;&#xFE0E;</i><i
-          style="--dx:3;--s:5.4;--d:1.04s;--t:2.42s;--r:-27;--h:356;--up:5">&#9829;&#xFE0E;</i><i
-          style="--dx:-14;--s:2.8;--d:0.65s;--t:2.30s;--r:21;--h:352;--up:8">&#9829;&#xFE0E;</i><i
-          style="--dx:30;--s:5.4;--d:1.02s;--t:2.48s;--r:44;--h:357;--up:9">&#9829;&#xFE0E;</i><i
-          style="--dx:29;--s:2.7;--d:0.59s;--t:2.44s;--r:-57;--h:353;--up:7">&#9829;&#xFE0E;</i><i
-          style="--dx:-23;--s:4.4;--d:1.15s;--t:2.27s;--r:59;--h:356;--up:6">&#9829;&#xFE0E;</i><i
-          style="--dx:-40;--s:2.4;--d:0.56s;--t:2.20s;--r:1;--h:345;--up:7">&#9829;&#xFE0E;</i><i
-          style="--dx:39;--s:3.2;--d:0.77s;--t:2.50s;--r:-45;--h:357;--up:10">&#9829;&#xFE0E;</i><i
-          style="--dx:20;--s:2.7;--d:1.07s;--t:2.26s;--r:21;--h:355;--up:4">&#9829;&#xFE0E;</i><i
-          style="--dx:29;--s:5.4;--d:0.48s;--t:2.24s;--r:-50;--h:350;--up:5">&#9829;&#xFE0E;</i><i
-          style="--dx:47;--s:2.1;--d:0.71s;--t:2.28s;--r:23;--h:349;--up:8">&#9829;&#xFE0E;</i><i
-          style="--dx:31;--s:5.4;--d:0.79s;--t:2.21s;--r:10;--h:349;--up:4">&#9829;&#xFE0E;</i><i
-          style="--dx:-47;--s:5.4;--d:0.78s;--t:2.32s;--r:59;--h:349;--up:7">&#9829;&#xFE0E;</i><i
-          style="--dx:47;--s:2.7;--d:1.05s;--t:2.02s;--r:-33;--h:354;--up:8">&#9829;&#xFE0E;</i><i
-          style="--dx:-25;--s:4.1;--d:0.31s;--t:2.25s;--r:-44;--h:346;--up:9">&#9829;&#xFE0E;</i><i
-          style="--dx:-14;--s:3.6;--d:0.70s;--t:2.54s;--r:-7;--h:349;--up:8">&#9829;&#xFE0E;</i><i
-          style="--dx:-33;--s:3.8;--d:1.05s;--t:2.47s;--r:17;--h:345;--up:10">&#9829;&#xFE0E;</i><i
-          style="--dx:29;--s:2.6;--d:0.57s;--t:2.44s;--r:11;--h:346;--up:6">&#9829;&#xFE0E;</i><i
-          style="--dx:18;--s:3.9;--d:0.58s;--t:2.47s;--r:53;--h:346;--up:5">&#9829;&#xFE0E;</i><i
-          style="--dx:-30;--s:2.1;--d:0.12s;--t:2.27s;--r:-57;--h:347;--up:7">&#9829;&#xFE0E;</i><i
-          style="--dx:-17;--s:5.4;--d:0.73s;--t:2.12s;--r:-25;--h:359;--up:8">&#9829;&#xFE0E;</i><i
-          style="--dx:3;--s:3.7;--d:1.13s;--t:2.42s;--r:52;--h:353;--up:8">&#9829;&#xFE0E;</i><i
-          style="--dx:38;--s:2.7;--d:0.54s;--t:2.25s;--r:-10;--h:359;--up:6">&#9829;&#xFE0E;</i><i
-          style="--dx:-41;--s:2.8;--d:0.09s;--t:2.40s;--r:40;--h:348;--up:10">&#9829;&#xFE0E;</i><i
-          style="--dx:-33;--s:4.5;--d:0.79s;--t:2.09s;--r:53;--h:349;--up:7">&#9829;&#xFE0E;</i><i
-          style="--dx:-27;--s:5.3;--d:0.48s;--t:2.29s;--r:25;--h:352;--up:5">&#9829;&#xFE0E;</i><i
-          style="--dx:20;--s:5.5;--d:0.48s;--t:2.25s;--r:-15;--h:355;--up:4">&#9829;&#xFE0E;</i><i
-          style="--dx:21;--s:2.1;--d:0.66s;--t:2.26s;--r:-58;--h:357;--up:6">&#9829;&#xFE0E;</i><i
-          style="--dx:2;--s:3.0;--d:1.15s;--t:2.07s;--r:57;--h:352;--up:4">&#9829;&#xFE0E;</i><i
-          style="--dx:-40;--s:3.0;--d:1.09s;--t:2.11s;--r:36;--h:349;--up:10">&#9829;&#xFE0E;</i><i
-          style="--dx:-7;--s:5.2;--d:0.98s;--t:2.16s;--r:-41;--h:360;--up:9">&#9829;&#xFE0E;</i><i
-          style="--dx:-17;--s:3.0;--d:0.96s;--t:2.11s;--r:54;--h:347;--up:6">&#9829;&#xFE0E;</i><i
-          style="--dx:42;--s:4.2;--d:0.96s;--t:2.05s;--r:49;--h:352;--up:4">&#9829;&#xFE0E;</i><i
-          style="--dx:-23;--s:2.4;--d:0.01s;--t:2.60s;--r:-7;--h:353;--up:8">&#9829;&#xFE0E;</i><i
-          style="--dx:-36;--s:3.8;--d:0.29s;--t:2.07s;--r:-40;--h:353;--up:4">&#9829;&#xFE0E;</i><i
-          style="--dx:-31;--s:5.3;--d:0.75s;--t:2.32s;--r:-34;--h:354;--up:7">&#9829;&#xFE0E;</i><i
-          style="--dx:0;--s:2.6;--d:0.42s;--t:2.01s;--r:-28;--h:346;--up:4">&#9829;&#xFE0E;</i><i
-          style="--dx:-46;--s:3.8;--d:1.17s;--t:2.31s;--r:-29;--h:359;--up:4">&#9829;&#xFE0E;</i><i
-          style="--dx:15;--s:4.3;--d:0.79s;--t:2.33s;--r:53;--h:357;--up:8">&#9829;&#xFE0E;</i><i
-          style="--dx:-18;--s:2.8;--d:0.28s;--t:2.12s;--r:52;--h:349;--up:7">&#9829;&#xFE0E;</i><i
-          style="--dx:47;--s:5.4;--d:1.00s;--t:2.01s;--r:20;--h:353;--up:7">&#9829;&#xFE0E;</i><i
-          style="--dx:-32;--s:2.3;--d:1.01s;--t:2.52s;--r:25;--h:354;--up:8">&#9829;&#xFE0E;</i><i
-          style="--dx:-25;--s:3.0;--d:0.55s;--t:2.09s;--r:-3;--h:345;--up:6">&#9829;&#xFE0E;</i><i
-          style="--dx:-13;--s:3.2;--d:1.18s;--t:2.19s;--r:-56;--h:354;--up:5">&#9829;&#xFE0E;</i><i
-          style="--dx:-14;--s:2.0;--d:0.46s;--t:2.28s;--r:4;--h:351;--up:5">&#9829;&#xFE0E;</i><i
-          style="--dx:0;--s:2.0;--d:0.32s;--t:2.05s;--r:-9;--h:346;--up:7">&#9829;&#xFE0E;</i><i
-          style="--dx:-46;--s:3.1;--d:0.28s;--t:2.35s;--r:7;--h:349;--up:9">&#9829;&#xFE0E;</i><i
-          style="--dx:38;--s:4.7;--d:0.72s;--t:2.46s;--r:32;--h:360;--up:5">&#9829;&#xFE0E;</i><i
-          style="--dx:-21;--s:4.2;--d:0.17s;--t:2.49s;--r:31;--h:358;--up:9">&#9829;&#xFE0E;</i><i
-          style="--dx:19;--s:3.8;--d:1.09s;--t:2.45s;--r:12;--h:345;--up:10">&#9829;&#xFE0E;</i><i
-          style="--dx:18;--s:4.8;--d:0.85s;--t:2.57s;--r:22;--h:352;--up:4">&#9829;&#xFE0E;</i><i
-          style="--dx:-45;--s:2.5;--d:0.43s;--t:2.06s;--r:46;--h:359;--up:8">&#9829;&#xFE0E;</i><i
-          style="--dx:-43;--s:2.1;--d:0.64s;--t:2.15s;--r:-27;--h:345;--up:7">&#9829;&#xFE0E;</i><i
-          style="--dx:29;--s:4.6;--d:0.60s;--t:2.32s;--r:24;--h:347;--up:9">&#9829;&#xFE0E;</i><i
-          style="--dx:23;--s:2.9;--d:0.09s;--t:2.16s;--r:33;--h:351;--up:5">&#9829;&#xFE0E;</i><i
-          style="--dx:23;--s:5.4;--d:0.59s;--t:2.23s;--r:1;--h:354;--up:10">&#9829;&#xFE0E;</i><i
-          style="--dx:-44;--s:4.2;--d:0.24s;--t:2.36s;--r:-18;--h:353;--up:9">&#9829;&#xFE0E;</i><i
-          style="--dx:23;--s:3.1;--d:0.68s;--t:2.01s;--r:-53;--h:360;--up:6">&#9829;&#xFE0E;</i><i
-          style="--dx:45;--s:2.3;--d:0.26s;--t:2.29s;--r:30;--h:354;--up:7">&#9829;&#xFE0E;</i><i
-          style="--dx:-3;--s:4.7;--d:1.19s;--t:2.33s;--r:-21;--h:347;--up:7">&#9829;&#xFE0E;</i><i
-          style="--dx:-46;--s:3.6;--d:0.98s;--t:2.58s;--r:-3;--h:353;--up:7">&#9829;&#xFE0E;</i><i
-          style="--dx:-28;--s:5.3;--d:0.25s;--t:2.35s;--r:-42;--h:353;--up:6">&#9829;&#xFE0E;</i><i
-          style="--dx:-35;--s:4.9;--d:0.61s;--t:2.53s;--r:30;--h:356;--up:5">&#9829;&#xFE0E;</i><i
-          style="--dx:-0;--s:5.1;--d:0.47s;--t:2.10s;--r:2;--h:359;--up:7">&#9829;&#xFE0E;</i><i
-          style="--dx:-19;--s:2.5;--d:0.41s;--t:2.19s;--r:47;--h:355;--up:4">&#9829;&#xFE0E;</i><i
-          style="--dx:-17;--s:3.2;--d:0.48s;--t:2.56s;--r:-35;--h:345;--up:9">&#9829;&#xFE0E;</i><i
-          style="--dx:-20;--s:3.3;--d:0.47s;--t:2.60s;--r:15;--h:347;--up:6">&#9829;&#xFE0E;</i><i
-          style="--dx:41;--s:4.6;--d:1.03s;--t:2.17s;--r:-54;--h:354;--up:9">&#9829;&#xFE0E;</i><i
-          style="--dx:42;--s:2.9;--d:0.32s;--t:2.31s;--r:-36;--h:356;--up:10">&#9829;&#xFE0E;</i><i
-          style="--dx:44;--s:5.1;--d:0.97s;--t:2.38s;--r:56;--h:351;--up:9">&#9829;&#xFE0E;</i><i
-          style="--dx:-40;--s:5.3;--d:0.49s;--t:2.37s;--r:-43;--h:354;--up:7">&#9829;&#xFE0E;</i><i
-          style="--dx:-43;--s:5.2;--d:0.15s;--t:2.28s;--r:-17;--h:354;--up:6">&#9829;&#xFE0E;</i><i
-          style="--dx:-23;--s:4.6;--d:0.78s;--t:2.24s;--r:-30;--h:354;--up:7">&#9829;&#xFE0E;</i><i
-          style="--dx:6;--s:3.4;--d:0.20s;--t:2.10s;--r:-34;--h:360;--up:8">&#9829;&#xFE0E;</i><i
-          style="--dx:-27;--s:5.2;--d:1.20s;--t:2.27s;--r:-43;--h:351;--up:5">&#9829;&#xFE0E;</i><i
-          style="--dx:-39;--s:3.2;--d:0.11s;--t:2.14s;--r:-27;--h:351;--up:4">&#9829;&#xFE0E;</i><i
-          style="--dx:24;--s:3.4;--d:0.50s;--t:2.31s;--r:-12;--h:353;--up:6">&#9829;&#xFE0E;</i><i
-          style="--dx:24;--s:3.7;--d:0.69s;--t:2.22s;--r:27;--h:351;--up:4">&#9829;&#xFE0E;</i><i
-          style="--dx:-22;--s:2.9;--d:0.48s;--t:2.27s;--r:-21;--h:345;--up:5">&#9829;&#xFE0E;</i><i
-          style="--dx:-45;--s:4.5;--d:1.07s;--t:2.28s;--r:15;--h:360;--up:4">&#9829;&#xFE0E;</i><i
-          style="--dx:-41;--s:5.3;--d:1.11s;--t:2.32s;--r:-1;--h:359;--up:5">&#9829;&#xFE0E;</i><i
-          style="--dx:27;--s:2.8;--d:0.18s;--t:2.58s;--r:-47;--h:359;--up:4">&#9829;&#xFE0E;</i><i
-          style="--dx:5;--s:2.1;--d:0.94s;--t:2.14s;--r:57;--h:346;--up:9">&#9829;&#xFE0E;</i><i
-          style="--dx:21;--s:5.4;--d:0.75s;--t:2.32s;--r:-5;--h:348;--up:4">&#9829;&#xFE0E;</i><i
-          style="--dx:-41;--s:3.8;--d:0.70s;--t:2.23s;--r:-32;--h:345;--up:4">&#9829;&#xFE0E;</i><i
-          style="--dx:4;--s:5.5;--d:0.33s;--t:2.19s;--r:47;--h:352;--up:7">&#9829;&#xFE0E;</i><i
-          style="--dx:3;--s:3.9;--d:0.04s;--t:2.25s;--r:23;--h:354;--up:4">&#9829;&#xFE0E;</i><i
-          style="--dx:-46;--s:3.7;--d:0.81s;--t:2.25s;--r:-28;--h:352;--up:9">&#9829;&#xFE0E;</i><i
-          style="--dx:-7;--s:3.3;--d:0.59s;--t:2.42s;--r:31;--h:358;--up:6">&#9829;&#xFE0E;</i><i
-          style="--dx:18;--s:2.7;--d:0.96s;--t:2.44s;--r:4;--h:347;--up:5">&#9829;&#xFE0E;</i><i
-          style="--dx:-0;--s:2.7;--d:0.92s;--t:2.12s;--r:-1;--h:352;--up:6">&#9829;&#xFE0E;</i><i
-          style="--dx:25;--s:3.0;--d:1.14s;--t:2.30s;--r:-37;--h:352;--up:7">&#9829;&#xFE0E;</i><i
-          style="--dx:-8;--s:4.3;--d:1.14s;--t:2.09s;--r:-10;--h:346;--up:5">&#9829;&#xFE0E;</i><i
-          style="--dx:-46;--s:4.1;--d:0.50s;--t:2.43s;--r:-37;--h:357;--up:7">&#9829;&#xFE0E;</i><i
-          style="--dx:38;--s:5.1;--d:0.88s;--t:2.60s;--r:59;--h:350;--up:6">&#9829;&#xFE0E;</i><i
-          style="--dx:-30;--s:4.3;--d:0.63s;--t:2.28s;--r:-21;--h:357;--up:10">&#9829;&#xFE0E;</i><i
-          style="--dx:-12;--s:3.2;--d:0.20s;--t:2.00s;--r:-25;--h:347;--up:6">&#9829;&#xFE0E;</i><i
-          style="--dx:-8;--s:5.1;--d:0.67s;--t:2.46s;--r:-12;--h:356;--up:10">&#9829;&#xFE0E;</i><i
-          style="--dx:31;--s:4.9;--d:0.52s;--t:2.03s;--r:0;--h:351;--up:6">&#9829;&#xFE0E;</i><i
-          style="--dx:4;--s:3.6;--d:0.39s;--t:2.44s;--r:0;--h:345;--up:9">&#9829;&#xFE0E;</i><i
-          style="--dx:-9;--s:4.8;--d:0.92s;--t:2.02s;--r:-56;--h:359;--up:4">&#9829;&#xFE0E;</i><i
-          style="--dx:29;--s:2.2;--d:0.23s;--t:2.04s;--r:17;--h:355;--up:6">&#9829;&#xFE0E;</i><i
-          style="--dx:-22;--s:5.4;--d:0.74s;--t:2.16s;--r:31;--h:355;--up:6">&#9829;&#xFE0E;</i><i
-          style="--dx:-19;--s:4.5;--d:0.71s;--t:2.48s;--r:60;--h:347;--up:4">&#9829;&#xFE0E;</i><i
-          style="--dx:31;--s:2.4;--d:0.86s;--t:2.28s;--r:39;--h:357;--up:10">&#9829;&#xFE0E;</i></div>
+      <div class="rain"><i style="--tx:-5;--s:4.0;--d:1.20s;--t:2.28s;--r:60;--h:351;--up:7">&#9829;&#xFE0E;</i><i
+          style="--tx:32;--s:3.7;--d:0.80s;--t:2.11s;--r:44;--h:354;--up:7">&#9829;&#xFE0E;</i><i
+          style="--tx:-43;--s:4.8;--d:0.90s;--t:2.03s;--r:31;--h:359;--up:14">&#9829;&#xFE0E;</i><i
+          style="--tx:16;--s:4.2;--d:1.08s;--t:2.04s;--r:-61;--h:351;--up:8">&#9829;&#xFE0E;</i><i
+          style="--tx:10;--s:4.7;--d:0.42s;--t:2.35s;--r:-20;--h:352;--up:9">&#9829;&#xFE0E;</i><i
+          style="--tx:-0;--s:4.3;--d:0.59s;--t:2.17s;--r:-49;--h:353;--up:10">&#9829;&#xFE0E;</i><i
+          style="--tx:27;--s:3.8;--d:0.04s;--t:2.34s;--r:-43;--h:357;--up:6">&#9829;&#xFE0E;</i><i
+          style="--tx:36;--s:3.4;--d:1.25s;--t:2.51s;--r:-70;--h:351;--up:8">&#9829;&#xFE0E;</i><i
+          style="--tx:44;--s:2.2;--d:0.49s;--t:2.43s;--r:37;--h:347;--up:14">&#9829;&#xFE0E;</i><i
+          style="--tx:13;--s:4.7;--d:0.35s;--t:2.05s;--r:15;--h:345;--up:11">&#9829;&#xFE0E;</i><i
+          style="--tx:27;--s:2.4;--d:0.32s;--t:2.06s;--r:-55;--h:359;--up:12">&#9829;&#xFE0E;</i><i
+          style="--tx:-34;--s:4.0;--d:0.58s;--t:2.11s;--r:-37;--h:358;--up:11">&#9829;&#xFE0E;</i><i
+          style="--tx:-40;--s:3.5;--d:0.28s;--t:2.16s;--r:7;--h:345;--up:8">&#9829;&#xFE0E;</i><i
+          style="--tx:-33;--s:5.5;--d:0.78s;--t:2.35s;--r:-60;--h:349;--up:8">&#9829;&#xFE0E;</i><i
+          style="--tx:-6;--s:2.0;--d:0.79s;--t:2.50s;--r:28;--h:347;--up:6">&#9829;&#xFE0E;</i><i
+          style="--tx:-43;--s:4.0;--d:0.32s;--t:2.36s;--r:25;--h:359;--up:7">&#9829;&#xFE0E;</i><i
+          style="--tx:48;--s:3.7;--d:0.75s;--t:2.52s;--r:-24;--h:349;--up:9">&#9829;&#xFE0E;</i><i
+          style="--tx:42;--s:4.9;--d:0.32s;--t:2.11s;--r:-20;--h:357;--up:12">&#9829;&#xFE0E;</i><i
+          style="--tx:11;--s:3.5;--d:0.13s;--t:2.02s;--r:-5;--h:352;--up:11">&#9829;&#xFE0E;</i><i
+          style="--tx:-25;--s:4.9;--d:0.78s;--t:2.18s;--r:-26;--h:347;--up:7">&#9829;&#xFE0E;</i><i
+          style="--tx:-28;--s:4.0;--d:1.11s;--t:2.37s;--r:1;--h:351;--up:8">&#9829;&#xFE0E;</i><i
+          style="--tx:26;--s:2.2;--d:0.53s;--t:2.15s;--r:-59;--h:350;--up:9">&#9829;&#xFE0E;</i><i
+          style="--tx:-14;--s:4.0;--d:0.17s;--t:2.22s;--r:45;--h:355;--up:13">&#9829;&#xFE0E;</i><i
+          style="--tx:9;--s:2.5;--d:0.05s;--t:2.01s;--r:21;--h:354;--up:5">&#9829;&#xFE0E;</i><i
+          style="--tx:-50;--s:4.2;--d:0.63s;--t:2.44s;--r:11;--h:349;--up:6">&#9829;&#xFE0E;</i><i
+          style="--tx:-44;--s:3.9;--d:0.96s;--t:2.54s;--r:-37;--h:355;--up:10">&#9829;&#xFE0E;</i><i
+          style="--tx:-43;--s:3.7;--d:0.10s;--t:2.51s;--r:-63;--h:360;--up:14">&#9829;&#xFE0E;</i><i
+          style="--tx:-50;--s:4.3;--d:0.49s;--t:2.01s;--r:-52;--h:347;--up:6">&#9829;&#xFE0E;</i><i
+          style="--tx:14;--s:5.5;--d:1.14s;--t:2.44s;--r:29;--h:359;--up:12">&#9829;&#xFE0E;</i><i
+          style="--tx:-4;--s:3.9;--d:0.67s;--t:2.31s;--r:9;--h:347;--up:12">&#9829;&#xFE0E;</i><i
+          style="--tx:-50;--s:5.4;--d:0.15s;--t:2.47s;--r:54;--h:353;--up:5">&#9829;&#xFE0E;</i><i
+          style="--tx:-14;--s:2.5;--d:0.80s;--t:2.31s;--r:17;--h:359;--up:12">&#9829;&#xFE0E;</i><i
+          style="--tx:41;--s:3.1;--d:0.87s;--t:2.12s;--r:40;--h:351;--up:8">&#9829;&#xFE0E;</i><i
+          style="--tx:-12;--s:4.0;--d:0.41s;--t:2.08s;--r:57;--h:356;--up:5">&#9829;&#xFE0E;</i><i
+          style="--tx:22;--s:5.3;--d:0.36s;--t:2.10s;--r:45;--h:360;--up:9">&#9829;&#xFE0E;</i><i
+          style="--tx:44;--s:4.9;--d:0.50s;--t:2.31s;--r:10;--h:359;--up:10">&#9829;&#xFE0E;</i><i
+          style="--tx:-44;--s:2.1;--d:1.13s;--t:2.02s;--r:1;--h:356;--up:9">&#9829;&#xFE0E;</i><i
+          style="--tx:16;--s:4.0;--d:0.83s;--t:2.24s;--r:-22;--h:345;--up:9">&#9829;&#xFE0E;</i><i
+          style="--tx:-27;--s:2.5;--d:0.06s;--t:2.38s;--r:44;--h:348;--up:13">&#9829;&#xFE0E;</i><i
+          style="--tx:16;--s:4.8;--d:1.25s;--t:2.41s;--r:-19;--h:360;--up:9">&#9829;&#xFE0E;</i><i
+          style="--tx:-33;--s:2.0;--d:0.61s;--t:2.43s;--r:-25;--h:352;--up:9">&#9829;&#xFE0E;</i><i
+          style="--tx:29;--s:3.9;--d:1.23s;--t:2.30s;--r:-30;--h:357;--up:8">&#9829;&#xFE0E;</i><i
+          style="--tx:-43;--s:5.3;--d:0.94s;--t:2.08s;--r:46;--h:351;--up:5">&#9829;&#xFE0E;</i><i
+          style="--tx:-13;--s:4.0;--d:1.14s;--t:2.48s;--r:17;--h:359;--up:10">&#9829;&#xFE0E;</i><i
+          style="--tx:16;--s:2.7;--d:0.94s;--t:2.49s;--r:-39;--h:351;--up:8">&#9829;&#xFE0E;</i><i
+          style="--tx:42;--s:5.4;--d:1.27s;--t:2.32s;--r:12;--h:353;--up:5">&#9829;&#xFE0E;</i><i
+          style="--tx:-16;--s:2.3;--d:0.57s;--t:2.33s;--r:0;--h:360;--up:5">&#9829;&#xFE0E;</i><i
+          style="--tx:-29;--s:5.0;--d:0.56s;--t:2.02s;--r:66;--h:355;--up:7">&#9829;&#xFE0E;</i><i
+          style="--tx:-3;--s:5.5;--d:1.17s;--t:2.31s;--r:42;--h:360;--up:14">&#9829;&#xFE0E;</i><i
+          style="--tx:47;--s:2.3;--d:0.29s;--t:2.32s;--r:4;--h:350;--up:13">&#9829;&#xFE0E;</i><i
+          style="--tx:1;--s:5.2;--d:0.33s;--t:2.40s;--r:-17;--h:354;--up:7">&#9829;&#xFE0E;</i><i
+          style="--tx:49;--s:3.8;--d:0.74s;--t:2.12s;--r:67;--h:348;--up:13">&#9829;&#xFE0E;</i><i
+          style="--tx:-51;--s:3.3;--d:0.70s;--t:2.03s;--r:32;--h:348;--up:12">&#9829;&#xFE0E;</i><i
+          style="--tx:-42;--s:2.6;--d:1.21s;--t:2.28s;--r:33;--h:353;--up:8">&#9829;&#xFE0E;</i><i
+          style="--tx:-3;--s:2.4;--d:0.56s;--t:2.49s;--r:51;--h:355;--up:6">&#9829;&#xFE0E;</i><i
+          style="--tx:-32;--s:4.2;--d:1.20s;--t:2.08s;--r:-65;--h:346;--up:8">&#9829;&#xFE0E;</i><i
+          style="--tx:-36;--s:2.0;--d:0.37s;--t:2.43s;--r:-8;--h:360;--up:6">&#9829;&#xFE0E;</i><i
+          style="--tx:-0;--s:4.0;--d:1.11s;--t:2.37s;--r:-20;--h:358;--up:5">&#9829;&#xFE0E;</i><i
+          style="--tx:-13;--s:3.4;--d:0.69s;--t:2.10s;--r:-18;--h:351;--up:13">&#9829;&#xFE0E;</i><i
+          style="--tx:-30;--s:3.9;--d:0.76s;--t:2.08s;--r:18;--h:350;--up:10">&#9829;&#xFE0E;</i><i
+          style="--tx:11;--s:5.1;--d:0.25s;--t:2.47s;--r:-21;--h:348;--up:7">&#9829;&#xFE0E;</i><i
+          style="--tx:40;--s:2.5;--d:0.11s;--t:2.23s;--r:41;--h:358;--up:13">&#9829;&#xFE0E;</i><i
+          style="--tx:30;--s:2.4;--d:0.52s;--t:2.41s;--r:-66;--h:348;--up:8">&#9829;&#xFE0E;</i><i
+          style="--tx:7;--s:3.3;--d:1.07s;--t:2.22s;--r:59;--h:355;--up:13">&#9829;&#xFE0E;</i><i
+          style="--tx:52;--s:4.9;--d:1.04s;--t:2.29s;--r:-64;--h:346;--up:13">&#9829;&#xFE0E;</i><i
+          style="--tx:12;--s:5.2;--d:0.63s;--t:2.11s;--r:-41;--h:351;--up:7">&#9829;&#xFE0E;</i><i
+          style="--tx:35;--s:5.5;--d:1.20s;--t:2.06s;--r:-55;--h:349;--up:12">&#9829;&#xFE0E;</i><i
+          style="--tx:-44;--s:2.3;--d:0.51s;--t:2.26s;--r:20;--h:358;--up:8">&#9829;&#xFE0E;</i><i
+          style="--tx:10;--s:2.0;--d:0.91s;--t:2.51s;--r:-24;--h:358;--up:12">&#9829;&#xFE0E;</i><i
+          style="--tx:-15;--s:3.3;--d:1.20s;--t:2.36s;--r:-46;--h:345;--up:10">&#9829;&#xFE0E;</i><i
+          style="--tx:41;--s:4.8;--d:0.92s;--t:2.52s;--r:33;--h:351;--up:13">&#9829;&#xFE0E;</i><i
+          style="--tx:9;--s:3.2;--d:0.99s;--t:2.17s;--r:-41;--h:350;--up:11">&#9829;&#xFE0E;</i><i
+          style="--tx:-38;--s:3.2;--d:0.70s;--t:2.22s;--r:40;--h:350;--up:11">&#9829;&#xFE0E;</i><i
+          style="--tx:-30;--s:2.6;--d:1.04s;--t:2.18s;--r:-45;--h:345;--up:10">&#9829;&#xFE0E;</i><i
+          style="--tx:51;--s:5.2;--d:0.06s;--t:2.16s;--r:6;--h:355;--up:8">&#9829;&#xFE0E;</i><i
+          style="--tx:17;--s:4.0;--d:0.69s;--t:2.23s;--r:57;--h:351;--up:6">&#9829;&#xFE0E;</i><i
+          style="--tx:27;--s:5.4;--d:0.03s;--t:2.37s;--r:-10;--h:353;--up:12">&#9829;&#xFE0E;</i><i
+          style="--tx:-10;--s:2.2;--d:0.25s;--t:2.23s;--r:-45;--h:353;--up:9">&#9829;&#xFE0E;</i><i
+          style="--tx:-23;--s:3.2;--d:0.70s;--t:2.25s;--r:63;--h:348;--up:12">&#9829;&#xFE0E;</i><i
+          style="--tx:32;--s:2.3;--d:0.78s;--t:2.46s;--r:-59;--h:357;--up:7">&#9829;&#xFE0E;</i><i
+          style="--tx:-12;--s:5.4;--d:1.11s;--t:2.33s;--r:-56;--h:358;--up:12">&#9829;&#xFE0E;</i><i
+          style="--tx:-8;--s:3.8;--d:0.78s;--t:2.22s;--r:3;--h:360;--up:9">&#9829;&#xFE0E;</i><i
+          style="--tx:6;--s:3.0;--d:0.93s;--t:2.18s;--r:-67;--h:352;--up:14">&#9829;&#xFE0E;</i><i
+          style="--tx:-48;--s:2.5;--d:0.98s;--t:2.23s;--r:10;--h:357;--up:5">&#9829;&#xFE0E;</i><i
+          style="--tx:9;--s:4.5;--d:0.42s;--t:2.48s;--r:-13;--h:358;--up:12">&#9829;&#xFE0E;</i><i
+          style="--tx:-26;--s:4.6;--d:0.06s;--t:2.06s;--r:49;--h:349;--up:8">&#9829;&#xFE0E;</i><i
+          style="--tx:11;--s:2.4;--d:0.81s;--t:2.27s;--r:-18;--h:346;--up:10">&#9829;&#xFE0E;</i><i
+          style="--tx:3;--s:2.4;--d:0.58s;--t:2.40s;--r:46;--h:353;--up:14">&#9829;&#xFE0E;</i><i
+          style="--tx:19;--s:3.3;--d:0.97s;--t:2.49s;--r:-35;--h:354;--up:7">&#9829;&#xFE0E;</i><i
+          style="--tx:-27;--s:2.4;--d:1.16s;--t:2.47s;--r:21;--h:353;--up:9">&#9829;&#xFE0E;</i><i
+          style="--tx:11;--s:4.5;--d:0.91s;--t:2.11s;--r:1;--h:352;--up:8">&#9829;&#xFE0E;</i><i
+          style="--tx:47;--s:3.8;--d:0.85s;--t:2.12s;--r:-60;--h:346;--up:5">&#9829;&#xFE0E;</i><i
+          style="--tx:-24;--s:3.5;--d:0.81s;--t:2.06s;--r:68;--h:353;--up:6">&#9829;&#xFE0E;</i><i
+          style="--tx:27;--s:5.2;--d:0.21s;--t:2.14s;--r:25;--h:360;--up:12">&#9829;&#xFE0E;</i><i
+          style="--tx:-15;--s:3.2;--d:0.64s;--t:2.08s;--r:-51;--h:348;--up:12">&#9829;&#xFE0E;</i><i
+          style="--tx:32;--s:4.2;--d:1.00s;--t:2.13s;--r:38;--h:353;--up:11">&#9829;&#xFE0E;</i><i
+          style="--tx:32;--s:3.3;--d:0.85s;--t:2.59s;--r:13;--h:354;--up:13">&#9829;&#xFE0E;</i><i
+          style="--tx:27;--s:4.9;--d:0.24s;--t:2.39s;--r:-46;--h:359;--up:10">&#9829;&#xFE0E;</i><i
+          style="--tx:-44;--s:2.3;--d:0.73s;--t:2.29s;--r:48;--h:354;--up:5">&#9829;&#xFE0E;</i><i
+          style="--tx:-44;--s:2.7;--d:0.86s;--t:2.05s;--r:7;--h:360;--up:10">&#9829;&#xFE0E;</i><i
+          style="--tx:-23;--s:2.5;--d:0.47s;--t:2.44s;--r:23;--h:348;--up:10">&#9829;&#xFE0E;</i><i
+          style="--tx:22;--s:4.0;--d:1.19s;--t:2.56s;--r:1;--h:359;--up:13">&#9829;&#xFE0E;</i><i
+          style="--tx:32;--s:3.1;--d:0.41s;--t:2.24s;--r:62;--h:352;--up:6">&#9829;&#xFE0E;</i><i
+          style="--tx:-14;--s:3.3;--d:0.47s;--t:2.24s;--r:29;--h:351;--up:14">&#9829;&#xFE0E;</i><i
+          style="--tx:-14;--s:3.4;--d:0.20s;--t:2.35s;--r:-25;--h:350;--up:6">&#9829;&#xFE0E;</i><i
+          style="--tx:27;--s:5.1;--d:0.37s;--t:2.01s;--r:62;--h:346;--up:13">&#9829;&#xFE0E;</i><i
+          style="--tx:-35;--s:3.0;--d:0.03s;--t:2.51s;--r:38;--h:347;--up:14">&#9829;&#xFE0E;</i><i
+          style="--tx:5;--s:4.8;--d:0.11s;--t:2.05s;--r:-44;--h:355;--up:6">&#9829;&#xFE0E;</i><i
+          style="--tx:-49;--s:4.3;--d:0.13s;--t:2.49s;--r:38;--h:352;--up:8">&#9829;&#xFE0E;</i><i
+          style="--tx:-1;--s:5.2;--d:0.44s;--t:2.28s;--r:19;--h:355;--up:10">&#9829;&#xFE0E;</i><i
+          style="--tx:18;--s:3.7;--d:0.70s;--t:2.43s;--r:-59;--h:358;--up:10">&#9829;&#xFE0E;</i><i
+          style="--tx:37;--s:4.8;--d:1.08s;--t:2.53s;--r:68;--h:345;--up:13">&#9829;&#xFE0E;</i><i
+          style="--tx:-14;--s:2.0;--d:0.14s;--t:2.55s;--r:-33;--h:352;--up:7">&#9829;&#xFE0E;</i><i
+          style="--tx:51;--s:3.3;--d:0.22s;--t:2.12s;--r:38;--h:354;--up:9">&#9829;&#xFE0E;</i><i
+          style="--tx:49;--s:2.2;--d:0.40s;--t:2.07s;--r:-31;--h:350;--up:5">&#9829;&#xFE0E;</i><i
+          style="--tx:26;--s:2.1;--d:0.63s;--t:2.48s;--r:10;--h:348;--up:8">&#9829;&#xFE0E;</i><i
+          style="--tx:-33;--s:2.8;--d:0.31s;--t:2.43s;--r:60;--h:352;--up:12">&#9829;&#xFE0E;</i><i
+          style="--tx:-33;--s:3.0;--d:0.22s;--t:2.45s;--r:9;--h:360;--up:9">&#9829;&#xFE0E;</i><i
+          style="--tx:-2;--s:3.4;--d:1.24s;--t:2.40s;--r:-47;--h:360;--up:8">&#9829;&#xFE0E;</i><i
+          style="--tx:-10;--s:2.8;--d:0.17s;--t:2.48s;--r:65;--h:353;--up:5">&#9829;&#xFE0E;</i><i
+          style="--tx:16;--s:2.8;--d:0.01s;--t:2.28s;--r:25;--h:359;--up:8">&#9829;&#xFE0E;</i><i
+          style="--tx:22;--s:4.1;--d:0.20s;--t:2.09s;--r:12;--h:349;--up:9">&#9829;&#xFE0E;</i><i
+          style="--tx:42;--s:4.8;--d:0.17s;--t:2.45s;--r:-2;--h:346;--up:7">&#9829;&#xFE0E;</i><i
+          style="--tx:7;--s:2.6;--d:0.27s;--t:2.55s;--r:-32;--h:349;--up:6">&#9829;&#xFE0E;</i><i
+          style="--tx:-15;--s:4.2;--d:0.69s;--t:2.53s;--r:49;--h:347;--up:14">&#9829;&#xFE0E;</i><i
+          style="--tx:5;--s:3.8;--d:0.02s;--t:2.11s;--r:-21;--h:347;--up:12">&#9829;&#xFE0E;</i><i
+          style="--tx:-30;--s:3.9;--d:0.68s;--t:2.09s;--r:9;--h:355;--up:9">&#9829;&#xFE0E;</i><i
+          style="--tx:-10;--s:3.9;--d:1.30s;--t:2.40s;--r:-53;--h:356;--up:6">&#9829;&#xFE0E;</i><i
+          style="--tx:19;--s:2.4;--d:0.51s;--t:2.28s;--r:-39;--h:359;--up:5">&#9829;&#xFE0E;</i><i
+          style="--tx:38;--s:4.5;--d:0.62s;--t:2.18s;--r:-41;--h:359;--up:5">&#9829;&#xFE0E;</i><i
+          style="--tx:37;--s:5.0;--d:0.93s;--t:2.54s;--r:-32;--h:354;--up:11">&#9829;&#xFE0E;</i><i
+          style="--tx:45;--s:4.6;--d:1.24s;--t:2.45s;--r:-48;--h:353;--up:8">&#9829;&#xFE0E;</i><i
+          style="--tx:-31;--s:4.6;--d:0.43s;--t:2.57s;--r:50;--h:355;--up:12">&#9829;&#xFE0E;</i><i
+          style="--tx:34;--s:2.3;--d:0.18s;--t:2.06s;--r:-25;--h:350;--up:8">&#9829;&#xFE0E;</i><i
+          style="--tx:-10;--s:4.9;--d:0.77s;--t:2.05s;--r:-12;--h:346;--up:7">&#9829;&#xFE0E;</i><i
+          style="--tx:51;--s:3.5;--d:1.00s;--t:2.20s;--r:39;--h:349;--up:8">&#9829;&#xFE0E;</i><i
+          style="--tx:28;--s:4.9;--d:0.50s;--t:2.20s;--r:35;--h:345;--up:11">&#9829;&#xFE0E;</i><i
+          style="--tx:12;--s:3.1;--d:1.03s;--t:2.15s;--r:65;--h:345;--up:9">&#9829;&#xFE0E;</i><i
+          style="--tx:-18;--s:3.2;--d:0.85s;--t:2.06s;--r:26;--h:351;--up:13">&#9829;&#xFE0E;</i><i
+          style="--tx:-17;--s:3.0;--d:0.13s;--t:2.43s;--r:-6;--h:354;--up:13">&#9829;&#xFE0E;</i><i
+          style="--tx:-28;--s:4.1;--d:0.67s;--t:2.34s;--r:-20;--h:351;--up:14">&#9829;&#xFE0E;</i><i
+          style="--tx:46;--s:4.2;--d:0.26s;--t:2.05s;--r:-8;--h:360;--up:14">&#9829;&#xFE0E;</i><i
+          style="--tx:-9;--s:3.2;--d:0.12s;--t:2.52s;--r:-2;--h:359;--up:6">&#9829;&#xFE0E;</i><i
+          style="--tx:-5;--s:4.6;--d:0.31s;--t:2.34s;--r:69;--h:347;--up:13">&#9829;&#xFE0E;</i><i
+          style="--tx:43;--s:2.6;--d:0.97s;--t:2.54s;--r:15;--h:349;--up:6">&#9829;&#xFE0E;</i><i
+          style="--tx:45;--s:2.0;--d:0.89s;--t:2.22s;--r:22;--h:350;--up:7">&#9829;&#xFE0E;</i><i
+          style="--tx:10;--s:4.8;--d:0.59s;--t:2.24s;--r:-35;--h:354;--up:11">&#9829;&#xFE0E;</i><i
+          style="--tx:12;--s:4.2;--d:0.99s;--t:2.10s;--r:35;--h:359;--up:5">&#9829;&#xFE0E;</i><i
+          style="--tx:-37;--s:3.4;--d:0.74s;--t:2.10s;--r:63;--h:349;--up:9">&#9829;&#xFE0E;</i><i
+          style="--tx:-27;--s:5.3;--d:0.07s;--t:2.47s;--r:-33;--h:357;--up:12">&#9829;&#xFE0E;</i><i
+          style="--tx:10;--s:3.6;--d:0.53s;--t:2.37s;--r:34;--h:354;--up:12">&#9829;&#xFE0E;</i><i
+          style="--tx:40;--s:3.6;--d:1.18s;--t:2.41s;--r:41;--h:348;--up:14">&#9829;&#xFE0E;</i><i
+          style="--tx:-40;--s:5.3;--d:0.43s;--t:2.31s;--r:37;--h:345;--up:10">&#9829;&#xFE0E;</i><i
+          style="--tx:42;--s:3.0;--d:0.80s;--t:2.26s;--r:26;--h:355;--up:9">&#9829;&#xFE0E;</i><i
+          style="--tx:40;--s:5.1;--d:0.32s;--t:2.51s;--r:-8;--h:357;--up:5">&#9829;&#xFE0E;</i><i
+          style="--tx:-3;--s:2.4;--d:1.18s;--t:2.33s;--r:31;--h:352;--up:6">&#9829;&#xFE0E;</i><i
+          style="--tx:52;--s:4.6;--d:1.13s;--t:2.22s;--r:69;--h:358;--up:14">&#9829;&#xFE0E;</i><i
+          style="--tx:32;--s:2.8;--d:0.97s;--t:2.34s;--r:-52;--h:348;--up:13">&#9829;&#xFE0E;</i><i
+          style="--tx:30;--s:2.4;--d:0.70s;--t:2.57s;--r:-70;--h:354;--up:8">&#9829;&#xFE0E;</i><i
+          style="--tx:24;--s:2.1;--d:0.22s;--t:2.26s;--r:45;--h:357;--up:7">&#9829;&#xFE0E;</i><i
+          style="--tx:-15;--s:4.0;--d:0.06s;--t:2.02s;--r:10;--h:354;--up:10">&#9829;&#xFE0E;</i><i
+          style="--tx:-0;--s:5.3;--d:1.27s;--t:2.28s;--r:-18;--h:351;--up:9">&#9829;&#xFE0E;</i><i
+          style="--tx:37;--s:4.4;--d:0.08s;--t:2.19s;--r:20;--h:360;--up:5">&#9829;&#xFE0E;</i><i
+          style="--tx:-34;--s:5.1;--d:1.29s;--t:2.12s;--r:-10;--h:351;--up:5">&#9829;&#xFE0E;</i><i
+          style="--tx:16;--s:3.1;--d:1.06s;--t:2.58s;--r:0;--h:358;--up:7">&#9829;&#xFE0E;</i><i
+          style="--tx:-17;--s:5.3;--d:1.01s;--t:2.25s;--r:-27;--h:352;--up:9">&#9829;&#xFE0E;</i><i
+          style="--tx:-39;--s:4.4;--d:0.35s;--t:2.43s;--r:58;--h:354;--up:9">&#9829;&#xFE0E;</i><i
+          style="--tx:-13;--s:4.3;--d:1.15s;--t:2.35s;--r:-12;--h:354;--up:7">&#9829;&#xFE0E;</i><i
+          style="--tx:17;--s:3.0;--d:0.83s;--t:2.05s;--r:-51;--h:359;--up:13">&#9829;&#xFE0E;</i><i
+          style="--tx:-44;--s:5.2;--d:0.01s;--t:2.35s;--r:67;--h:353;--up:11">&#9829;&#xFE0E;</i></div>
       <div class="shot"><svg class="flyarrow" viewBox="0 0 100 20">
           <line x1="6" y1="10" x2="92" y2="10" stroke="#e0a63a" stroke-width="4.5" stroke-linecap="round" />
           <polygon points="88,2 100,10 88,18" fill="#f1f4fb" stroke="#7b839a" stroke-width="1.3" />
           <polygon points="0,1 17,10 0,19 6,10" fill="#ff4f86" />
           <polygon points="10,3 26,10 10,17 14,10" fill="#ff93b6" />
         </svg></div>
+    </div>
+  </section>
+
+  <!-- SCREEN 3: heart tree + quote -->
+  <section class="page tree" aria-hidden="true">
+    <div class="treebox">
+      <div class="q">
+        <div class="qm">&ldquo;</div>
+        <p class="l1">Every heart needs a place to bloom,</p>
+        <p class="l2">and mine found its home in you.</p>
+        <p class="l3">With every smile, every day,</p>
+        <p class="l4">our love grows a little more.</p>
+        <p class="qs">Forever &amp; always 💕</p>
+      </div>
+      <div class="treewrap">
+        <svg class="treesvg" viewBox="0 0 100 150">
+          <ellipse cx="50" cy="146" rx="36" ry="5" fill="#4a2a1a" opacity=".6" />
+          <g fill="none" stroke="#8a5530" stroke-linecap="round">
+            <path d="M50 100C46 82 36 68 22 52" stroke-width="4" />
+            <path d="M50 100C54 82 64 68 78 52" stroke-width="4" />
+            <path d="M50 100C50 80 50 62 50 40" stroke-width="4.5" />
+            <path d="M31 62C26 52 20 46 16 38" stroke-width="2.6" />
+            <path d="M69 62C74 52 80 46 84 38" stroke-width="2.6" />
+          </g>
+          <path d="M42 146C45 122 44 108 47 94L53 94C56 108 55 122 58 146Z" fill="#8a5530" stroke="#5f3a1e"
+            stroke-width="1.2" />
+          <path d="M30 146q3-8 5 0M66 146q2-9 5 0M72 147q2-6 4 0" stroke="#5aa05a" stroke-width="1.5" fill="none"
+            stroke-linecap="round" />
+        </svg>
+        <div class="canopy"><i
+            style="left:28.0%;top:28.0%;--s:6.8;--h:357;--l:51%;--d:10.33s;--b:2.8s">&#9829;&#xFE0E;</i><i
+            style="left:23.9%;top:76.7%;--s:8.5;--h:352;--l:51%;--d:8.92s;--b:2.3s">&#9829;&#xFE0E;</i><i
+            style="left:54.9%;top:86.1%;--s:11.1;--h:350;--l:53%;--d:8.90s;--b:2.2s">&#9829;&#xFE0E;</i><i
+            style="left:75.7%;top:65.9%;--s:10.9;--h:355;--l:57%;--d:9.21s;--b:2.1s">&#9829;&#xFE0E;</i><i
+            style="left:94.0%;top:54.1%;--s:8.7;--h:339;--l:66%;--d:9.62s;--b:2.3s">&#9829;&#xFE0E;</i><i
+            style="left:17.2%;top:48.4%;--s:9.5;--h:360;--l:52%;--d:9.75s;--b:2.3s">&#9829;&#xFE0E;</i><i
+            style="left:64.9%;top:68.4%;--s:9.6;--h:343;--l:63%;--d:9.31s;--b:2.3s">&#9829;&#xFE0E;</i><i
+            style="left:66.2%;top:25.2%;--s:11.4;--h:343;--l:66%;--d:10.14s;--b:2.5s">&#9829;&#xFE0E;</i><i
+            style="left:51.7%;top:53.5%;--s:8.7;--h:345;--l:55%;--d:9.50s;--b:1.9s">&#9829;&#xFE0E;</i><i
+            style="left:85.4%;top:35.3%;--s:9.5;--h:352;--l:49%;--d:9.91s;--b:2.0s">&#9829;&#xFE0E;</i><i
+            style="left:16.5%;top:25.5%;--s:10.7;--h:356;--l:50%;--d:10.09s;--b:1.8s">&#9829;&#xFE0E;</i><i
+            style="left:15.6%;top:43.0%;--s:7.3;--h:360;--l:54%;--d:9.77s;--b:3.0s">&#9829;&#xFE0E;</i><i
+            style="left:22.8%;top:60.2%;--s:6.7;--h:346;--l:65%;--d:9.38s;--b:2.3s">&#9829;&#xFE0E;</i><i
+            style="left:78.0%;top:24.8%;--s:9.5;--h:356;--l:67%;--d:10.12s;--b:2.1s">&#9829;&#xFE0E;</i><i
+            style="left:48.9%;top:82.6%;--s:8.1;--h:342;--l:62%;--d:8.77s;--b:2.5s">&#9829;&#xFE0E;</i><i
+            style="left:58.2%;top:54.2%;--s:6.8;--h:335;--l:53%;--d:9.68s;--b:2.4s">&#9829;&#xFE0E;</i><i
+            style="left:2.3%;top:44.2%;--s:8.0;--h:335;--l:65%;--d:9.84s;--b:2.2s">&#9829;&#xFE0E;</i><i
+            style="left:72.0%;top:46.7%;--s:6.6;--h:341;--l:50%;--d:9.73s;--b:3.0s">&#9829;&#xFE0E;</i><i
+            style="left:49.6%;top:60.8%;--s:9.4;--h:360;--l:55%;--d:9.24s;--b:2.8s">&#9829;&#xFE0E;</i><i
+            style="left:44.0%;top:78.3%;--s:8.7;--h:360;--l:65%;--d:9.04s;--b:2.8s">&#9829;&#xFE0E;</i><i
+            style="left:91.8%;top:47.0%;--s:11.9;--h:338;--l:63%;--d:9.80s;--b:2.3s">&#9829;&#xFE0E;</i><i
+            style="left:54.4%;top:24.3%;--s:7.9;--h:354;--l:48%;--d:10.33s;--b:1.8s">&#9829;&#xFE0E;</i><i
+            style="left:31.0%;top:41.7%;--s:8.3;--h:358;--l:59%;--d:9.74s;--b:2.4s">&#9829;&#xFE0E;</i><i
+            style="left:52.6%;top:78.1%;--s:12.0;--h:355;--l:68%;--d:8.91s;--b:2.3s">&#9829;&#xFE0E;</i><i
+            style="left:69.6%;top:20.3%;--s:6.9;--h:355;--l:58%;--d:10.31s;--b:2.5s">&#9829;&#xFE0E;</i><i
+            style="left:40.8%;top:67.9%;--s:7.7;--h:340;--l:54%;--d:9.15s;--b:1.9s">&#9829;&#xFE0E;</i><i
+            style="left:13.5%;top:58.7%;--s:8.2;--h:341;--l:53%;--d:9.33s;--b:2.2s">&#9829;&#xFE0E;</i><i
+            style="left:23.4%;top:14.2%;--s:8.6;--h:340;--l:61%;--d:10.41s;--b:1.8s">&#9829;&#xFE0E;</i><i
+            style="left:13.2%;top:65.0%;--s:6.8;--h:338;--l:58%;--d:9.26s;--b:2.9s">&#9829;&#xFE0E;</i><i
+            style="left:29.3%;top:61.8%;--s:10.7;--h:335;--l:53%;--d:9.47s;--b:2.2s">&#9829;&#xFE0E;</i><i
+            style="left:74.0%;top:81.7%;--s:7.1;--h:345;--l:61%;--d:8.97s;--b:2.4s">&#9829;&#xFE0E;</i><i
+            style="left:24.7%;top:48.8%;--s:9.2;--h:359;--l:53%;--d:9.81s;--b:2.8s">&#9829;&#xFE0E;</i><i
+            style="left:23.5%;top:58.0%;--s:8.6;--h:345;--l:53%;--d:9.33s;--b:2.7s">&#9829;&#xFE0E;</i><i
+            style="left:40.1%;top:38.8%;--s:6.6;--h:358;--l:68%;--d:9.93s;--b:2.6s">&#9829;&#xFE0E;</i><i
+            style="left:70.0%;top:16.9%;--s:6.8;--h:354;--l:67%;--d:10.57s;--b:2.2s">&#9829;&#xFE0E;</i><i
+            style="left:59.3%;top:14.6%;--s:10.4;--h:348;--l:64%;--d:10.48s;--b:3.0s">&#9829;&#xFE0E;</i><i
+            style="left:46.2%;top:65.0%;--s:7.2;--h:358;--l:62%;--d:9.42s;--b:2.3s">&#9829;&#xFE0E;</i><i
+            style="left:85.2%;top:66.2%;--s:11.1;--h:351;--l:55%;--d:9.25s;--b:2.3s">&#9829;&#xFE0E;</i><i
+            style="left:34.3%;top:86.4%;--s:6.7;--h:336;--l:64%;--d:8.79s;--b:2.6s">&#9829;&#xFE0E;</i><i
+            style="left:55.1%;top:88.4%;--s:9.8;--h:354;--l:49%;--d:8.71s;--b:2.9s">&#9829;&#xFE0E;</i><i
+            style="left:46.7%;top:73.6%;--s:9.1;--h:343;--l:67%;--d:8.98s;--b:2.2s">&#9829;&#xFE0E;</i><i
+            style="left:68.4%;top:17.0%;--s:11.9;--h:347;--l:49%;--d:10.51s;--b:2.8s">&#9829;&#xFE0E;</i><i
+            style="left:19.7%;top:66.0%;--s:11.9;--h:350;--l:51%;--d:9.15s;--b:2.1s">&#9829;&#xFE0E;</i><i
+            style="left:6.2%;top:34.5%;--s:10.1;--h:339;--l:51%;--d:10.12s;--b:2.8s">&#9829;&#xFE0E;</i><i
+            style="left:35.9%;top:77.1%;--s:12.0;--h:337;--l:53%;--d:9.00s;--b:2.8s">&#9829;&#xFE0E;</i><i
+            style="left:25.6%;top:65.0%;--s:7.9;--h:360;--l:59%;--d:9.35s;--b:2.3s">&#9829;&#xFE0E;</i><i
+            style="left:93.5%;top:32.1%;--s:11.3;--h:341;--l:63%;--d:10.09s;--b:2.1s">&#9829;&#xFE0E;</i><i
+            style="left:26.3%;top:68.3%;--s:6.9;--h:352;--l:62%;--d:9.25s;--b:2.7s">&#9829;&#xFE0E;</i><i
+            style="left:14.4%;top:9.5%;--s:7.8;--h:360;--l:63%;--d:10.62s;--b:2.8s">&#9829;&#xFE0E;</i><i
+            style="left:35.6%;top:26.9%;--s:9.5;--h:337;--l:52%;--d:10.28s;--b:2.8s">&#9829;&#xFE0E;</i><i
+            style="left:72.9%;top:12.5%;--s:8.3;--h:346;--l:55%;--d:10.45s;--b:2.8s">&#9829;&#xFE0E;</i><i
+            style="left:77.8%;top:52.1%;--s:7.5;--h:347;--l:48%;--d:9.48s;--b:2.8s">&#9829;&#xFE0E;</i><i
+            style="left:14.2%;top:44.3%;--s:11.5;--h:337;--l:50%;--d:9.82s;--b:3.0s">&#9829;&#xFE0E;</i><i
+            style="left:42.2%;top:49.6%;--s:10.0;--h:358;--l:54%;--d:9.57s;--b:2.5s">&#9829;&#xFE0E;</i><i
+            style="left:12.7%;top:33.0%;--s:8.6;--h:345;--l:58%;--d:10.21s;--b:2.8s">&#9829;&#xFE0E;</i><i
+            style="left:25.4%;top:31.0%;--s:10.1;--h:341;--l:54%;--d:10.24s;--b:2.0s">&#9829;&#xFE0E;</i><i
+            style="left:19.7%;top:76.5%;--s:10.3;--h:349;--l:49%;--d:8.90s;--b:2.0s">&#9829;&#xFE0E;</i><i
+            style="left:71.8%;top:63.8%;--s:11.7;--h:354;--l:67%;--d:9.20s;--b:2.2s">&#9829;&#xFE0E;</i><i
+            style="left:38.4%;top:16.7%;--s:12.0;--h:357;--l:54%;--d:10.36s;--b:2.7s">&#9829;&#xFE0E;</i><i
+            style="left:21.9%;top:75.3%;--s:8.2;--h:348;--l:54%;--d:9.00s;--b:2.0s">&#9829;&#xFE0E;</i><i
+            style="left:34.1%;top:83.1%;--s:8.8;--h:354;--l:61%;--d:8.89s;--b:2.1s">&#9829;&#xFE0E;</i><i
+            style="left:63.4%;top:47.3%;--s:7.2;--h:338;--l:59%;--d:9.60s;--b:2.4s">&#9829;&#xFE0E;</i><i
+            style="left:29.3%;top:36.7%;--s:9.2;--h:338;--l:57%;--d:9.95s;--b:1.9s">&#9829;&#xFE0E;</i><i
+            style="left:69.4%;top:37.1%;--s:11.7;--h:337;--l:68%;--d:10.07s;--b:2.3s">&#9829;&#xFE0E;</i><i
+            style="left:22.8%;top:40.5%;--s:8.6;--h:358;--l:61%;--d:10.01s;--b:2.5s">&#9829;&#xFE0E;</i><i
+            style="left:7.9%;top:61.5%;--s:6.9;--h:348;--l:58%;--d:9.36s;--b:2.1s">&#9829;&#xFE0E;</i><i
+            style="left:38.0%;top:71.6%;--s:11.7;--h:344;--l:48%;--d:9.11s;--b:2.6s">&#9829;&#xFE0E;</i><i
+            style="left:49.7%;top:76.6%;--s:8.8;--h:339;--l:66%;--d:8.94s;--b:2.9s">&#9829;&#xFE0E;</i><i
+            style="left:15.0%;top:64.1%;--s:8.8;--h:345;--l:51%;--d:9.24s;--b:2.8s">&#9829;&#xFE0E;</i><i
+            style="left:47.5%;top:88.1%;--s:9.7;--h:352;--l:51%;--d:8.84s;--b:2.3s">&#9829;&#xFE0E;</i><i
+            style="left:67.0%;top:80.7%;--s:10.8;--h:335;--l:59%;--d:8.83s;--b:1.8s">&#9829;&#xFE0E;</i><i
+            style="left:42.0%;top:89.8%;--s:10.3;--h:335;--l:68%;--d:8.72s;--b:2.0s">&#9829;&#xFE0E;</i><i
+            style="left:58.5%;top:33.5%;--s:7.4;--h:351;--l:58%;--d:9.92s;--b:2.4s">&#9829;&#xFE0E;</i><i
+            style="left:55.5%;top:33.6%;--s:6.8;--h:342;--l:48%;--d:10.09s;--b:3.0s">&#9829;&#xFE0E;</i><i
+            style="left:49.5%;top:45.3%;--s:11.1;--h:355;--l:65%;--d:9.73s;--b:2.6s">&#9829;&#xFE0E;</i><i
+            style="left:46.8%;top:71.9%;--s:6.9;--h:349;--l:68%;--d:9.27s;--b:2.3s">&#9829;&#xFE0E;</i><i
+            style="left:34.3%;top:14.1%;--s:7.7;--h:353;--l:54%;--d:10.56s;--b:2.4s">&#9829;&#xFE0E;</i><i
+            style="left:56.7%;top:78.4%;--s:9.3;--h:338;--l:50%;--d:9.07s;--b:1.8s">&#9829;&#xFE0E;</i><i
+            style="left:67.2%;top:86.2%;--s:10.3;--h:360;--l:56%;--d:8.92s;--b:2.6s">&#9829;&#xFE0E;</i><i
+            style="left:46.8%;top:42.3%;--s:9.1;--h:338;--l:61%;--d:9.98s;--b:2.4s">&#9829;&#xFE0E;</i><i
+            style="left:77.9%;top:41.1%;--s:11.2;--h:335;--l:51%;--d:9.72s;--b:2.2s">&#9829;&#xFE0E;</i><i
+            style="left:62.4%;top:63.2%;--s:9.4;--h:338;--l:51%;--d:9.34s;--b:2.2s">&#9829;&#xFE0E;</i><i
+            style="left:41.3%;top:77.0%;--s:7.2;--h:353;--l:55%;--d:9.01s;--b:2.0s">&#9829;&#xFE0E;</i><i
+            style="left:83.8%;top:15.3%;--s:9.3;--h:344;--l:59%;--d:10.36s;--b:2.7s">&#9829;&#xFE0E;</i><i
+            style="left:37.9%;top:12.2%;--s:8.8;--h:336;--l:54%;--d:10.48s;--b:2.5s">&#9829;&#xFE0E;</i><i
+            style="left:50.7%;top:73.6%;--s:7.1;--h:339;--l:51%;--d:8.98s;--b:2.8s">&#9829;&#xFE0E;</i><i
+            style="left:22.1%;top:35.7%;--s:7.3;--h:353;--l:64%;--d:9.99s;--b:2.0s">&#9829;&#xFE0E;</i><i
+            style="left:54.5%;top:64.9%;--s:11.8;--h:357;--l:51%;--d:9.33s;--b:2.3s">&#9829;&#xFE0E;</i><i
+            style="left:23.3%;top:54.7%;--s:7.3;--h:338;--l:60%;--d:9.39s;--b:2.0s">&#9829;&#xFE0E;</i><i
+            style="left:65.4%;top:49.2%;--s:6.7;--h:338;--l:63%;--d:9.68s;--b:2.2s">&#9829;&#xFE0E;</i><i
+            style="left:62.8%;top:47.9%;--s:10.0;--h:359;--l:49%;--d:9.84s;--b:2.3s">&#9829;&#xFE0E;</i><i
+            style="left:32.9%;top:69.8%;--s:7.7;--h:352;--l:51%;--d:9.12s;--b:2.6s">&#9829;&#xFE0E;</i><i
+            style="left:72.2%;top:34.1%;--s:11.4;--h:341;--l:68%;--d:10.01s;--b:3.0s">&#9829;&#xFE0E;</i><i
+            style="left:69.1%;top:6.7%;--s:7.3;--h:351;--l:51%;--d:10.71s;--b:2.3s">&#9829;&#xFE0E;</i><i
+            style="left:62.5%;top:55.0%;--s:10.6;--h:343;--l:55%;--d:9.47s;--b:2.2s">&#9829;&#xFE0E;</i><i
+            style="left:56.5%;top:67.4%;--s:9.1;--h:346;--l:68%;--d:9.21s;--b:2.3s">&#9829;&#xFE0E;</i><i
+            style="left:28.0%;top:28.6%;--s:6.8;--h:351;--l:49%;--d:10.15s;--b:2.0s">&#9829;&#xFE0E;</i><i
+            style="left:53.5%;top:81.0%;--s:8.3;--h:342;--l:51%;--d:8.87s;--b:2.7s">&#9829;&#xFE0E;</i><i
+            style="left:24.3%;top:72.0%;--s:8.5;--h:342;--l:64%;--d:8.98s;--b:2.7s">&#9829;&#xFE0E;</i><i
+            style="left:16.9%;top:52.7%;--s:6.5;--h:348;--l:66%;--d:9.58s;--b:3.0s">&#9829;&#xFE0E;</i><i
+            style="left:45.0%;top:26.3%;--s:9.8;--h:342;--l:59%;--d:10.07s;--b:3.0s">&#9829;&#xFE0E;</i><i
+            style="left:48.0%;top:88.6%;--s:11.1;--h:341;--l:67%;--d:8.78s;--b:2.7s">&#9829;&#xFE0E;</i><i
+            style="left:87.6%;top:16.3%;--s:7.5;--h:338;--l:64%;--d:10.33s;--b:2.7s">&#9829;&#xFE0E;</i><i
+            style="left:50.8%;top:23.8%;--s:11.2;--h:341;--l:56%;--d:10.23s;--b:2.5s">&#9829;&#xFE0E;</i><i
+            style="left:38.9%;top:32.0%;--s:11.7;--h:355;--l:59%;--d:10.17s;--b:2.3s">&#9829;&#xFE0E;</i><i
+            style="left:24.5%;top:32.0%;--s:10.2;--h:337;--l:60%;--d:10.02s;--b:3.0s">&#9829;&#xFE0E;</i><i
+            style="left:32.2%;top:71.1%;--s:8.3;--h:345;--l:52%;--d:9.24s;--b:2.8s">&#9829;&#xFE0E;</i><i
+            style="left:76.6%;top:19.1%;--s:10.0;--h:336;--l:63%;--d:10.48s;--b:1.9s">&#9829;&#xFE0E;</i><i
+            style="left:83.7%;top:47.2%;--s:9.5;--h:345;--l:68%;--d:9.75s;--b:2.7s">&#9829;&#xFE0E;</i><i
+            style="left:41.9%;top:32.9%;--s:10.3;--h:341;--l:66%;--d:10.09s;--b:2.5s">&#9829;&#xFE0E;</i><i
+            style="left:62.6%;top:20.3%;--s:9.1;--h:345;--l:68%;--d:10.46s;--b:3.0s">&#9829;&#xFE0E;</i><i
+            style="left:37.4%;top:36.8%;--s:6.9;--h:360;--l:50%;--d:10.09s;--b:2.3s">&#9829;&#xFE0E;</i><i
+            style="left:12.4%;top:34.9%;--s:8.6;--h:349;--l:61%;--d:10.09s;--b:2.8s">&#9829;&#xFE0E;</i><i
+            style="left:41.7%;top:40.7%;--s:11.4;--h:358;--l:50%;--d:9.86s;--b:2.8s">&#9829;&#xFE0E;</i><i
+            style="left:39.4%;top:9.8%;--s:8.5;--h:352;--l:51%;--d:10.75s;--b:2.6s">&#9829;&#xFE0E;</i></div>
+        <div class="canopy drops"><i class="dp" style="left:43%;--s:6.1;--h:360;--d:13.8s">&#9829;&#xFE0E;</i><i
+            class="dp" style="left:80%;--s:4.6;--h:353;--d:12.9s">&#9829;&#xFE0E;</i><i class="dp"
+            style="left:25%;--s:6.8;--h:344;--d:14.9s">&#9829;&#xFE0E;</i><i class="dp"
+            style="left:48%;--s:4.1;--h:353;--d:15.1s">&#9829;&#xFE0E;</i><i class="dp"
+            style="left:29%;--s:6.1;--h:355;--d:13.5s">&#9829;&#xFE0E;</i><i class="dp"
+            style="left:63%;--s:5.2;--h:355;--d:12.2s">&#9829;&#xFE0E;</i><i class="dp"
+            style="left:67%;--s:4.5;--h:358;--d:12.9s">&#9829;&#xFE0E;</i><i class="dp"
+            style="left:16%;--s:6.5;--h:360;--d:13.0s">&#9829;&#xFE0E;</i><i class="dp"
+            style="left:56%;--s:5.6;--h:352;--d:13.4s">&#9829;&#xFE0E;</i><i class="dp"
+            style="left:56%;--s:5.4;--h:358;--d:12.3s">&#9829;&#xFE0E;</i><i class="dp"
+            style="left:64%;--s:5.2;--h:342;--d:14.2s">&#9829;&#xFE0E;</i><i class="dp"
+            style="left:31%;--s:4.8;--h:353;--d:13.8s">&#9829;&#xFE0E;</i></div>
+      </div>
     </div>
   </section>
 
